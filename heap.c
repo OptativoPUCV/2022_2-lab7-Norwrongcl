@@ -51,7 +51,7 @@ void heap_pop(Heap* pq){
   int younga= (2*asize)+ 1;
   int olda= (2*asize)+ 2; 
   while (asize < pq->size){
-    if (pq->heapArray[asize].priority < pq->heapArray[youngax].priority && pq->heapArray[younga].priority > pq->heapArray[olda].priority){
+    if (pq->heapArray[asize].priority < pq->heapArray[younga].priority && pq->heapArray[younga].priority > pq->heapArray[olda].priority){
       *aux= pq->heapArray[asize];
       pq->heapArray[asize]= pq->heapArray[younga];
       pq->heapArray[younga]= *aux;

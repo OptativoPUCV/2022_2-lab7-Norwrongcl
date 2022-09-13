@@ -28,3 +28,9 @@ heap.c:54:55: error: ‘youngax’ undeclared (first use in this function); did 
 heap.c:54:55: note: each undeclared identifier is reported only once for each function it appears in
 Compilation failed
 ddadf8e
+Tue 13 Sep 2022 01:45:25 AM UTC: 
+ heap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  7|1
+total_score: 60/70
+3afb8fc
