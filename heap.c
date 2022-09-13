@@ -50,40 +50,73 @@ void heap_push(Heap* pq, void* data, int priority){
    pq->size++;
 }
 
-void heap_pop(Heap* pq){
-   heapElem* aux = (heapElem*) malloc (sizeof(heapElem));
-   
-   pq->heapArray[0] = pq->heapArray[pq->size];
-   pq->size--;
+void heap_pop(Heap* pq)
+{ 
+  
+  int tamano = pq->size;
+  int auxPrior = pq->heapArray[tamano-1].priority;
+  void *auxData = pq->heapArray[tamano-1].data;
 
-   int auxSize = 0;
-   int youngerAux = (2*auxSize) + 1;
-   int olderAux = (2*auxSize) + 2; 
-   while (auxSize < pq->size)
-   {
-      if (pq->heapArray[auxSize].priority < pq->heapArray[youngerAux].priority && pq->heapArray[youngerAux].priority > pq->heapArray[olderAux].priority)
+  pq->heapArray[tamano].priority = pq->heapArray[0].priority;
+  pq->heapArray[tamano].data = pq->heapArray[0].data;
+
+  pq->heapArray[0].priority = auxPrior;
+  pq->heapArray[0].data = auxData;
+  pq->size = pq->size-1;
+
+  int i = 0;
+  while (  i < pq->size )
+  {
+    int posPrimHij= (i*2) + 1;
+    int posSegHij = (i*2) + 2;
+    int auxPrior2 = pq->heapArray[i].priority;
+    void *auxData2 = pq->heapArray[i].data;
+
+    if (posPrimHij > pq->size)
+    {
+      pq->heapArray[posPrimHij].priority = 0;
+    }
+    if (posSegHij > pq->size)
+    {
+      pq->heapArray[posSegHij].priority = 0;
+    }
+    
+    
+    if (pq->heapArray[posPrimHij].priority > pq->heapArray[posSegHij].priority)
+    {
+      if (pq->heapArray[posPrimHij].priority > pq->heapArray[i].priority)
       {
-         *aux = pq->heapArray[auxSize];
-         pq->heapArray[auxSize] = pq->heapArray[youngerAux];
-         pq->heapArray[youngerAux] = *aux;
+          pq->heapArray[i].priority = pq->heapArray[posPrimHij].priority;
+          pq->heapArray[i].data = pq->heapArray[posPrimHij].data;
 
-         auxSize = youngerAux;
-         youngerAux = (2*auxSize) + 1;
-         olderAux = (2*auxSize) + 2;
+          pq->heapArray[posPrimHij].priority = auxPrior2;
+          pq->heapArray[posPrimHij].data = auxData2;
+          i = posPrimHij; 
       }
-      else if (pq->heapArray[auxSize].priority < pq->heapArray[olderAux].priority && pq->heapArray[olderAux].priority > pq->heapArray[youngerAux].priority)
+      else break;
+    }
+    else if (pq->heapArray[posSegHij].priority > pq->heapArray[posPrimHij].priority)
+    {
+      if (pq->heapArray[posSegHij].priority > pq->heapArray[i].priority)
       {
-         *aux = pq->heapArray[auxSize];
-         pq->heapArray[auxSize] = pq->heapArray[olderAux];
-         pq->heapArray[olderAux] = *aux;
+          pq->heapArray[i].priority = pq->heapArray[posSegHij].priority;
+          pq->heapArray[i].data = pq->heapArray[posSegHij].data;
 
-         auxSize = olderAux;
-         youngerAux = (2*auxSize) + 1;
-         olderAux = (2*auxSize) + 2;
-      }
-      else
-         break;
-   }
+          pq->heapArray[posSegHij].priority = auxPrior2;
+          pq->heapArray[posSegHij].data = auxData2;
+          i = posSegHij; 
+      } 
+      else break;
+    }
+    else
+    {
+      break;
+    }
+  
+  }
+
+
+  
 }
 
 Heap* createHeap(){
