@@ -14,40 +14,33 @@ typedef struct Heap{
   heapElem* heapArray;
   int size;
   int capac;
-} Heap;
-
+}Heap;
 
 void* heap_top(Heap* pq){
-   if (pq->size == 0) return NULL;
-   return (void*) pq->heapArray[0].data;
+  if (pq->size == 0) return NULL;
+  return (void*) pq->heapArray[0].data;
 }
 
 void heap_push(Heap* pq, void* data, int priority){
-   if (pq->size == pq->capac)
-   {
-      pq->capac = (pq->capac*2)+1;
-      pq->heapArray = realloc(pq->heapArray, pq->capac*sizeof(heapElem));
-   }
-
-   pq->heapArray[pq->size].data = data;
-   pq->heapArray[pq->size].priority = priority;
-
-   int auxSize = pq->size;
-   int auxFatherSize = ((pq->size-1)/2);
-   heapElem* aux = (heapElem*) malloc (sizeof(heapElem));
-
-   while (auxSize > 0)
-   {
-      if (pq->heapArray[auxSize].priority > pq->heapArray[auxFatherSize].priority)
-      {
-         *aux = pq->heapArray[auxFatherSize];
-         pq->heapArray[auxFatherSize] = pq->heapArray[auxSize];
-         pq->heapArray[auxSize] = *aux;
-      }
-      auxSize = auxFatherSize;
-      auxFatherSize = (auxSize-1)/2;
-   }
-   pq->size++;
+  if (pq->size == pq->capac){
+    pq->capac= (pq->capac*2)+ 1;
+    pq->heapArray= realloc(pq->heapArray, pq->capac*sizeof(heapElem));
+  }
+  pq->heapArray[pq->size].data= data;
+  pq->heapArray[pq->size].priority= priority;
+  int asize= pq->size;
+  int adadsize= ((pq->size-1)/2);
+  heapElem* aux= (heapElem*) malloc (sizeof(heapElem));
+  while (asize > 0){
+    if (pq->heapArray[asize].priority > pq->heapArray[adadsize].priority){
+      *aux= pq->heapArray[adadsize];
+      pq->heapArray[adadsize]= pq->heapArray[asize];
+      pq->heapArray[asize]= *aux;
+    }
+    asize= adadsize;
+    adadsize= (asize-1)/2;
+  }
+  pq->size++;
 }
 
 void heap_pop(Heap* pq){ 
@@ -79,7 +72,7 @@ void heap_pop(Heap* pq){
       else break;
     }
     else if (pq->heapArray[indexch2].priority > pq->heapArray[indexch1].priority){
-      if (pq->heapArray[posSegHij].priority > pq->heapArray[i].priority){
+      if (pq->heapArray[indexch2].priority > pq->heapArray[i].priority){
           pq->heapArray[i].priority= pq->heapArray[indexch2].priority;
           pq->heapArray[i].data= pq->heapArray[indexch2].data;
 
@@ -95,11 +88,9 @@ void heap_pop(Heap* pq){
 }
 
 Heap* createHeap(){
-   Heap* new = (Heap*) malloc (sizeof(Heap));
-   new->size = 0;
-   new->capac = 3;
-
-   new->heapArray = (heapElem*) malloc (3*sizeof(heapElem));
-
-   return new;
+	Heap* new= (Heap*)malloc(sizeof(Heap));
+  new->size= 0;
+  new->capac= 3;
+  new->heapArray= (heapElem*)malloc(3*sizeof(heapElem));
+  return new;
 }

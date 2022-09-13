@@ -73,3 +73,21 @@ heap.c:95:1: error: expected identifier or ‘(’ before ‘}’ token
       | ^
 Compilation failed
 d84629a
+Tue 13 Sep 2022 03:38:24 AM UTC: 
+ heap.c | 28 +++++++++++-----------------
+ 1 file changed, 11 insertions(+), 17 deletions(-)
+In file included from test.c:4:
+heap.c: In function ‘heap_pop’:
+heap.c:56:10: error: expected expression before ‘int’
+   56 |   while (int i=0 < pq->size){
+      |          ^~~
+heap.c:57:20: error: ‘i’ undeclared (first use in this function)
+   57 |     int indexch1= (i*2)+ 1;
+      |                    ^
+heap.c:57:20: note: each undeclared identifier is reported only once for each function it appears in
+heap.c: At top level:
+heap.c:88:1: error: expected identifier or ‘(’ before ‘}’ token
+   88 | }
+      | ^
+Compilation failed
+4f0a71c
