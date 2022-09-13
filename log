@@ -52,3 +52,24 @@ Tue 13 Sep 2022 02:17:42 AM UTC:
  tests:  8|0
 total_score: 70/70
 b29abaa
+Tue 13 Sep 2022 03:37:22 AM UTC: 
+ heap.c | 91 ++++++++++++++++++++++++------------------------------------------
+ 1 file changed, 33 insertions(+), 58 deletions(-)
+In file included from test.c:4:
+heap.c: In function ‘heap_pop’:
+heap.c:63:10: error: expected expression before ‘int’
+   63 |   while (int i=0 < pq->size){
+      |          ^~~
+heap.c:64:20: error: ‘i’ undeclared (first use in this function)
+   64 |     int indexch1= (i*2)+ 1;
+      |                    ^
+heap.c:64:20: note: each undeclared identifier is reported only once for each function it appears in
+heap.c:82:25: error: ‘posSegHij’ undeclared (first use in this function)
+   82 |       if (pq->heapArray[posSegHij].priority > pq->heapArray[i].priority){
+      |                         ^~~~~~~~~
+heap.c: At top level:
+heap.c:95:1: error: expected identifier or ‘(’ before ‘}’ token
+   95 | }
+      | ^
+Compilation failed
+d84629a
