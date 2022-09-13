@@ -53,7 +53,8 @@ void heap_pop(Heap* pq){
   pq->heapArray[0].priority= apt;
   pq->heapArray[0].data= adata;
   pq->size= pq->size-1;
-  while (int i=0 < pq->size){
+	int i=0;
+  while (i < pq->size){
     int indexch1= (i*2)+ 1;
     int indexch2= (i*2)+ 2;
     int apt2= pq->heapArray[i].priority;
