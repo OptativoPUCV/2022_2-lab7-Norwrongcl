@@ -14,11 +14,12 @@ typedef struct Heap{
   heapElem* heapArray;
   int size;
   int capac;
-} Heap;
+}Heap;
 
 
 void* heap_top(Heap* pq){
-    return NULL;
+  if (pq->size == 0) return NULL;
+  return (void*) pq->heapArray[0].data;
 }
 
 
