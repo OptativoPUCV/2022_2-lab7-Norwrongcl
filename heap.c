@@ -83,7 +83,6 @@ void heap_pop(Heap* pq){
       else break;
     }
     else break;
-    }
   }
 }
 
