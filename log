@@ -40,3 +40,9 @@ Tue 13 Sep 2022 02:14:28 AM UTC:
  tests:  7|1
 total_score: 60/70
 c2ff85b
+Tue 13 Sep 2022 02:15:53 AM UTC: 
+ heap.c | 59 ++++++++++++++++-------------------------------------------
+ 1 file changed, 16 insertions(+), 43 deletions(-)
+ tests:  7|1
+total_score: 60/70
+f37b6b0
